@@ -1,0 +1,9 @@
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\bin\Debug\CheapFTL.exe.config
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\bin\Debug\CheapFTL.exe
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\bin\Debug\CheapFTL.pdb
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\obj\Debug\CheapFTL.csprojResolveAssemblyReference.cache
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\obj\Debug\CheapFTL.Properties.Resources.resources
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\obj\Debug\CheapFTL.csproj.GenerateResource.Cache
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\obj\Debug\CheapFTL.exe
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\obj\Debug\CheapFTL.pdb
+c:\users\david.berry\documents\visual studio 2013\Projects\CheapFTL\CheapFTL\obj\Debug\CheapFTL.Form1.resources
