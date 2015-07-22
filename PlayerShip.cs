@@ -31,9 +31,6 @@ namespace CheapFTL {
       if(roomy>=scrHeight/2&&(scrHeight/2)%Room.size!=0)
         roomy+=Room.size;
       roomy-=scrHeight/2;
-      Font f=new Font("Segoi UI",10);
-      b.Color=Color.FromArgb(196,196,196);
-      g.DrawString("roomx: "+Convert.ToString(roomx)+" roomy: "+Convert.ToString(roomy),f,b,new Point(5,5));
       if(mx<0)
         roomx*=-1;
       if(my<0)
