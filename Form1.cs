@@ -50,8 +50,8 @@ namespace CheapFTL {
       if(ofd.ShowDialog()==DialogResult.OK) {
         try {
           string filename=ofd.FileName;
-          string line=File.ReadAllLines(filename)[0];
-          p.pl=PlayerShip.BackToObj(line);
+          string[] lines=File.ReadAllLines(filename);
+          p.pl=PlayerShip.BackToObj(lines);
         }
         catch(Exception E) {
           MessageBox.Show(E.ToString(),"Error",MessageBoxButtons.OK);

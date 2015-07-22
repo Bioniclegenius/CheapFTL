@@ -96,7 +96,7 @@ namespace CheapFTL {
       obj+=Convert.ToString(walls[0])+" ";
       obj+=Convert.ToString(walls[1])+" ";
       obj+=Convert.ToString(walls[2])+" ";
-      obj+=Convert.ToString(walls[3])+" ";
+      obj+=Convert.ToString(walls[3]);
       return obj;
     }
     public static Room BackToObj(string input) {
@@ -110,6 +110,21 @@ namespace CheapFTL {
       r.walls[2]=Convert.ToInt32(values[5]);
       r.walls[3]=Convert.ToInt32(values[6]);
       return r;
+    }
+    public static int Compare(Room r1,Room r2) {
+      if(r1.x<r2.x)
+        return -1;
+      else if(r2.x<r1.x)
+        return 1;
+      else {
+        if(r1.y<r2.y)
+          return -1;
+        else if(r2.y<r1.y)
+          return 1;
+        else {
+          return 0;
+        }
+      }
     }
   }
 }

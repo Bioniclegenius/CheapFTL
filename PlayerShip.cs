@@ -19,12 +19,24 @@ namespace CheapFTL {
       g.FillRectangle(b,0,scrHeight-4,scrWidth,4);
       g.FillRectangle(b,0,0,4,scrHeight);
       g.FillRectangle(b,scrWidth-4,0,4,scrHeight);
-      int roomx=mx-mx%Room.size;
-      int roomy=my-my%Room.size;
+      int roomx=mx;
+      if(roomx<scrWidth/2)
+        roomx-=10;
+      else
+        roomx+=25;
+      roomx-=roomx%Room.size;
       roomx-=scrWidth/2;
+      int roomy=my;
+      if(roomy<scrHeight/2)
+        roomy-=30;
+      roomy-=roomy%Room.size;
       roomy-=scrHeight/2;
-      roomx/=Room.size;
-      roomy/=Room.size;
+      if(mx<0)
+        roomx*=-1;
+      if(my<0)
+        roomy*=-1;
+      if(my>0)
+        roomy++;
       bool found=false;
       for(int x=0;x<rooms.Count;x++)
         if(mx>=rooms[x].x*Room.size+scrWidth/2&&mx<=rooms[x].x*Room.size+scrWidth/2+Room.size&&
@@ -37,14 +49,17 @@ namespace CheapFTL {
             x--;
           }
         }
-      if(roomx*Room.size+scrWidth/2<=4||roomx*Room.size+scrWidth/2>=scrWidth-Room.size-4||
-         roomy*Room.size+scrHeight/2<=4||roomy*Room.size+scrHeight/2>=scrHeight-Room.size-4)
+      if(roomx+scrWidth/2<=4||roomx+scrWidth/2>=scrWidth-Room.size-4||
+         roomy+scrHeight/2<=4||roomy+scrHeight/2>=scrHeight-Room.size-4)
         found=true;
       if(!found) {
+        roomx/=Room.size;
+        roomy/=Room.size;
         Room temp=new Room(roomx,roomy,1);
         temp.render(g,b,scrWidth/2,scrHeight/2,mx,my,click);
         if(click) {
           rooms.Add(new Room(roomx,roomy,0));
+          rooms.Sort(Room.Compare);
           for(int x=0;x<rooms.Count-1;x++) {
             if(rooms[x].x==roomx-1&&rooms[x].y==roomy)
               rooms[rooms.Count-1].walls[0]=rooms[x].walls[2];
@@ -97,15 +112,17 @@ namespace CheapFTL {
     public override string ToString() {
       string obj="";
       for(int x=0;x<rooms.Count;x++) {
-        obj+="R"+rooms[x].ToString();
+        obj+=rooms[x].ToString();
+        if(x!=rooms.Count-1)
+          obj+="\r\n";
       }
       return obj;
     }
-    public static PlayerShip BackToObj(string input) {
+    public static PlayerShip BackToObj(string[] input) {
       PlayerShip p=new PlayerShip();
-      string[] lines=input.Split('R');
-      for(int x=1;x<lines.Length;x++)
-        p.rooms.Add(Room.BackToObj(lines[x]));
+      for(int x=0;x<input.Length;x++)
+        p.rooms.Add(Room.BackToObj(input[x]));
+      p.rooms.Sort(Room.Compare);
       return p;
     }
   }
