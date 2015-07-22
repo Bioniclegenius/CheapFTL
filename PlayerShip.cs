@@ -59,7 +59,6 @@ namespace CheapFTL {
         temp.render(g,b,scrWidth/2,scrHeight/2,mx,my,click,true);
         if(click) {
           rooms.Add(new Room(roomx,roomy,0));
-          rooms.Sort(Room.Compare);
           for(int x=0;x<rooms.Count-1;x++) {
             if(rooms[x].x==roomx-1&&rooms[x].y==roomy)
               rooms[rooms.Count-1].walls[0]=rooms[x].walls[2];
@@ -70,6 +69,7 @@ namespace CheapFTL {
             if(rooms[x].y==roomy+1&&rooms[x].x==roomx)
               rooms[rooms.Count-1].walls[3]=rooms[x].walls[1];
           }
+          rooms.Sort(Room.Compare);
         }
       }
       for(int x=0;x<rooms.Count;x++) {
