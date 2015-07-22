@@ -55,8 +55,8 @@ namespace CheapFTL {
       if(!found) {
         roomx/=Room.size;
         roomy/=Room.size;
-        Room temp=new Room(roomx,roomy,1);
-        temp.render(g,b,scrWidth/2,scrHeight/2,mx,my,click);
+        Room temp=new Room(roomx,roomy,0);
+        temp.render(g,b,scrWidth/2,scrHeight/2,mx,my,click,true);
         if(click) {
           rooms.Add(new Room(roomx,roomy,0));
           rooms.Sort(Room.Compare);
@@ -108,6 +108,38 @@ namespace CheapFTL {
       }
       for(int x=0;x<rooms.Count;x++)
         rooms[x].render(g,b,scrWidth/2,scrHeight/2,mx,my,click);
+      for(int x=0;x<rooms.Count;x++) {
+        if(rooms[x].updated) {
+          if(rooms[x].walls[0]==0) {
+            for(int y=0;y<rooms.Count;y++)
+              if(rooms[y].x==rooms[x].x-1&&rooms[y].y==rooms[x].y&&!rooms[y].updated) {
+                rooms[y].type=rooms[x].type;
+                rooms[y].updated=true;
+              }
+          }
+          if(rooms[x].walls[1]==0) {
+            for(int y=0;y<rooms.Count;y++)
+              if(rooms[y].x==rooms[x].x&&rooms[y].y==rooms[x].y-1&&!rooms[y].updated) {
+                rooms[y].type=rooms[x].type;
+                rooms[y].updated=true;
+              }
+          }
+          if(rooms[x].walls[2]==0) {
+            for(int y=0;y<rooms.Count;y++)
+              if(rooms[y].x==rooms[x].x+1&&rooms[y].y==rooms[x].y&&!rooms[y].updated) {
+                rooms[y].type=rooms[x].type;
+                rooms[y].updated=true;
+              }
+          }
+          if(rooms[x].walls[3]==0) {
+            for(int y=0;y<rooms.Count;y++)
+              if(rooms[y].x==rooms[x].x&&rooms[y].y==rooms[x].y+1&&!rooms[y].updated) {
+                rooms[y].type=rooms[x].type;
+                rooms[y].updated=true;
+              }
+          }
+        }
+      }
     }
     public override string ToString() {
       string obj="";
