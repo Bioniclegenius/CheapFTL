@@ -20,17 +20,20 @@ namespace CheapFTL {
       g.FillRectangle(b,0,0,4,scrHeight);
       g.FillRectangle(b,scrWidth-4,0,4,scrHeight);
       int roomx=mx;
-      if(roomx<scrWidth/2)
-        roomx-=10;
-      else
-        roomx+=25;
+      roomx-=(scrWidth/2)%Room.size;
       roomx-=roomx%Room.size;
+      if(roomx>=scrWidth/2&&(scrWidth/2)%Room.size!=0)
+        roomx+=Room.size;
       roomx-=scrWidth/2;
       int roomy=my;
-      if(roomy<scrHeight/2)
-        roomy-=30;
+      roomy-=(scrHeight/2)%Room.size;
       roomy-=roomy%Room.size;
+      if(roomy>=scrHeight/2&&(scrHeight/2)%Room.size!=0)
+        roomy+=Room.size;
       roomy-=scrHeight/2;
+      Font f=new Font("Segoi UI",10);
+      b.Color=Color.FromArgb(196,196,196);
+      g.DrawString("roomx: "+Convert.ToString(roomx)+" roomy: "+Convert.ToString(roomy),f,b,new Point(5,5));
       if(mx<0)
         roomx*=-1;
       if(my<0)
