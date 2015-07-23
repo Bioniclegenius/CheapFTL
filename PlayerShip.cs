@@ -19,57 +19,59 @@ namespace CheapFTL {
       g.FillRectangle(b,0,scrHeight-4,scrWidth,4);
       g.FillRectangle(b,0,0,4,scrHeight);
       g.FillRectangle(b,scrWidth-4,0,4,scrHeight);
-      int roomx=mx;
-      roomx-=(scrWidth/2)%Room.size;
-      roomx-=roomx%Room.size;
-      if(roomx>=scrWidth/2&&(scrWidth/2)%Room.size!=0)
-        roomx+=Room.size;
-      roomx-=scrWidth/2;
-      int roomy=my;
-      roomy-=(scrHeight/2)%Room.size;
-      roomy-=roomy%Room.size;
-      if(roomy>=scrHeight/2&&(scrHeight/2)%Room.size!=0)
-        roomy+=Room.size;
-      roomy-=scrHeight/2;
-      if(mx<0)
-        roomx*=-1;
-      if(my<0)
-        roomy*=-1;
-      if(my>0)
-        roomy++;
-      bool found=false;
-      for(int x=0;x<rooms.Count;x++)
-        if(mx>=rooms[x].x*Room.size+scrWidth/2&&mx<=rooms[x].x*Room.size+scrWidth/2+Room.size&&
-           my>=rooms[x].y*Room.size+scrHeight/2&&my<=rooms[x].y*Room.size+scrHeight/2+Room.size) {
+      if(glob.edit) {
+        int roomx=mx;
+        roomx-=(scrWidth/2)%Room.size;
+        roomx-=roomx%Room.size;
+        if(roomx>=scrWidth/2&&(scrWidth/2)%Room.size!=0)
+          roomx+=Room.size;
+        roomx-=scrWidth/2;
+        int roomy=my;
+        roomy-=(scrHeight/2)%Room.size;
+        roomy-=roomy%Room.size;
+        if(roomy>=scrHeight/2&&(scrHeight/2)%Room.size!=0)
+          roomy+=Room.size;
+        roomy-=scrHeight/2;
+        if(mx<0)
+          roomx*=-1;
+        if(my<0)
+          roomy*=-1;
+        if(my>0)
+          roomy++;
+        bool found=false;
+        for(int x=0;x<rooms.Count;x++)
+          if(mx>=rooms[x].x*Room.size+scrWidth/2&&mx<=rooms[x].x*Room.size+scrWidth/2+Room.size&&
+             my>=rooms[x].y*Room.size+scrHeight/2&&my<=rooms[x].y*Room.size+scrHeight/2+Room.size) {
+            found=true;
+            if(!click2)
+              break;
+            else {
+              rooms.RemoveAt(x);
+              x--;
+            }
+          }
+        if(roomx+scrWidth/2<=4||roomx+scrWidth/2>=scrWidth-Room.size-4||
+           roomy+scrHeight/2<=4||roomy+scrHeight/2>=scrHeight-Room.size-4)
           found=true;
-          if(!click2)
-            break;
-          else {
-            rooms.RemoveAt(x);
-            x--;
+        if(!found) {
+          roomx/=Room.size;
+          roomy/=Room.size;
+          Room temp=new Room(roomx,roomy,0);
+          temp.render(g,b,scrWidth/2,scrHeight/2,mx,my,click,true);
+          if(click) {
+            rooms.Add(new Room(roomx,roomy,0));
+            for(int x=0;x<rooms.Count-1;x++) {
+              if(rooms[x].x==roomx-1&&rooms[x].y==roomy)
+                rooms[rooms.Count-1].walls[0]=rooms[x].walls[2];
+              if(rooms[x].x==roomx+1&&rooms[x].y==roomy)
+                rooms[rooms.Count-1].walls[2]=rooms[x].walls[0];
+              if(rooms[x].y==roomy-1&&rooms[x].x==roomx)
+                rooms[rooms.Count-1].walls[1]=rooms[x].walls[3];
+              if(rooms[x].y==roomy+1&&rooms[x].x==roomx)
+                rooms[rooms.Count-1].walls[3]=rooms[x].walls[1];
+            }
+            rooms.Sort(Room.Compare);
           }
-        }
-      if(roomx+scrWidth/2<=4||roomx+scrWidth/2>=scrWidth-Room.size-4||
-         roomy+scrHeight/2<=4||roomy+scrHeight/2>=scrHeight-Room.size-4)
-        found=true;
-      if(!found) {
-        roomx/=Room.size;
-        roomy/=Room.size;
-        Room temp=new Room(roomx,roomy,0);
-        temp.render(g,b,scrWidth/2,scrHeight/2,mx,my,click,true);
-        if(click) {
-          rooms.Add(new Room(roomx,roomy,0));
-          for(int x=0;x<rooms.Count-1;x++) {
-            if(rooms[x].x==roomx-1&&rooms[x].y==roomy)
-              rooms[rooms.Count-1].walls[0]=rooms[x].walls[2];
-            if(rooms[x].x==roomx+1&&rooms[x].y==roomy)
-              rooms[rooms.Count-1].walls[2]=rooms[x].walls[0];
-            if(rooms[x].y==roomy-1&&rooms[x].x==roomx)
-              rooms[rooms.Count-1].walls[1]=rooms[x].walls[3];
-            if(rooms[x].y==roomy+1&&rooms[x].x==roomx)
-              rooms[rooms.Count-1].walls[3]=rooms[x].walls[1];
-          }
-          rooms.Sort(Room.Compare);
         }
       }
       for(int x=0;x<rooms.Count;x++) {

@@ -27,6 +27,8 @@
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.openShipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.saveShipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.stopEdittingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.startEdittingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menu.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -45,7 +47,9 @@
       // 
       this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openShipToolStripMenuItem,
-            this.saveShipToolStripMenuItem});
+            this.saveShipToolStripMenuItem,
+            this.stopEdittingToolStripMenuItem,
+            this.startEdittingToolStripMenuItem});
       this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
       this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
       this.fileToolStripMenuItem.Text = "File";
@@ -63,6 +67,20 @@
       this.saveShipToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
       this.saveShipToolStripMenuItem.Text = "Save Ship";
       this.saveShipToolStripMenuItem.Click += new System.EventHandler(this.saveShipToolStripMenuItem_Click);
+      // 
+      // stopEdittingToolStripMenuItem
+      // 
+      this.stopEdittingToolStripMenuItem.Name = "stopEdittingToolStripMenuItem";
+      this.stopEdittingToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+      this.stopEdittingToolStripMenuItem.Text = "Disable Editting";
+      this.stopEdittingToolStripMenuItem.Click += new System.EventHandler(this.stopEdittingToolStripMenuItem_Click);
+      // 
+      // startEdittingToolStripMenuItem
+      // 
+      this.startEdittingToolStripMenuItem.Name = "startEdittingToolStripMenuItem";
+      this.startEdittingToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+      this.startEdittingToolStripMenuItem.Text = "Enable Editting";
+      this.startEdittingToolStripMenuItem.Click += new System.EventHandler(this.startEdittingToolStripMenuItem_Click);
       // 
       // Form1
       // 
@@ -88,6 +106,8 @@
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem openShipToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem saveShipToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem stopEdittingToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem startEdittingToolStripMenuItem;
   }
 }
 

@@ -58,5 +58,11 @@ namespace CheapFTL {
         }
       }
     }
+    private void stopEdittingToolStripMenuItem_Click(object sender,EventArgs e) {
+      glob.edit=false;
+    }
+    private void startEdittingToolStripMenuItem_Click(object sender,EventArgs e) {
+      glob.edit=true;
+    }
   }
 }

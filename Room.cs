@@ -35,16 +35,18 @@ namespace CheapFTL {
       int[] dispwalls=new int[4];
       for(int z=0;z<4;z++)
         dispwalls[z]=walls[z];
-      if(mx>=cx+dx-4&&mx<=cx+dx+4&&my>=cy+dy+2&&my<=cy+dy+size-2)//0
-        dispwalls[0]=(dispwalls[0]+1)%3;
-      if(mx>=cx+dx+2&&mx<=cx+dx+size-2&&my>=cy+dy-4&&my<=cy+dy+4)//1
-        dispwalls[1]=(dispwalls[1]+1)%3;
-      if(mx>=cx+dx+size-4&&mx<=cx+dx+size+4&&my>=cy+dy+2&&my<=cy+dy+size-2)//2
-        dispwalls[2]=(dispwalls[2]+1)%3;
-      if(mx>=cx+dx+2&&mx<=cx+dx+size-2&&my>=cy+dy+size-4&&my<=cy+dy+size+4)//3
-        dispwalls[3]=(dispwalls[3]+1)%3;
-      if(mx>cx+dx+4&&mx<cx+dx+size-4&&my>cy+dy+4&&my<cy+dy+size-4)//inside
-        disptype=(disptype!=16)?disptype+1:1;
+        if(glob.edit) {
+        if(mx>=cx+dx-4&&mx<=cx+dx+4&&my>=cy+dy+2&&my<=cy+dy+size-2)//0
+          dispwalls[0]=(dispwalls[0]+1)%3;
+        if(mx>=cx+dx+2&&mx<=cx+dx+size-2&&my>=cy+dy-4&&my<=cy+dy+4)//1
+          dispwalls[1]=(dispwalls[1]+1)%3;
+        if(mx>=cx+dx+size-4&&mx<=cx+dx+size+4&&my>=cy+dy+2&&my<=cy+dy+size-2)//2
+          dispwalls[2]=(dispwalls[2]+1)%3;
+        if(mx>=cx+dx+2&&mx<=cx+dx+size-2&&my>=cy+dy+size-4&&my<=cy+dy+size+4)//3
+          dispwalls[3]=(dispwalls[3]+1)%3;
+        if(mx>cx+dx+4&&mx<cx+dx+size-4&&my>cy+dy+4&&my<cy+dy+size-4)//inside
+          disptype=(disptype!=16)?disptype+1:1;
+      }
       string temp="";
       if(type==0)
         type=1;
